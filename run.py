@@ -97,8 +97,11 @@ def get_stock_values():
     print(stock_table)
 
 
+def control():
+    print("Welcome to Bakecake stock control terminal")
+    print("-" * 30)
+    start()
+    update_check()
 
-print("Welcome to Bakecake stock control terminal")
-print("-" * 30)
-start()
-update_check()
+
+control()
