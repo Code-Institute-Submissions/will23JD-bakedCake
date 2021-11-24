@@ -40,8 +40,8 @@ def validate_id(data):
     try:
         if code != data:
             raise ValueError()
-    except ValueError as e:
-        print(f"{e}Incorrect ID: {data}, Please try again.")
+    except ValueError:
+        print(f"Incorrect ID: {data}, Please try again.")
         print("x" * 30)
         return False
 
@@ -53,10 +53,12 @@ def update_check():
     Asks the user if they want to check on stock levels
     or update them.
     """
-    print("Would you like to update or check on stock levels?")
-    user_choice = input("Enter C to check OR U to update: ")
+    while True:
+        print("Would you like to update or check on stock levels?")
+        user_choice = input("Enter C to check OR U to update: ")
 
-    validate_c_u(user_choice)
+        if validate_c_u(user_choice):
+            break
 
 
 def validate_c_u(data):
@@ -74,8 +76,12 @@ def validate_c_u(data):
             print("check()")
         else:
             raise ValueError()
-    except ValueError as e:
-        print(f"{e}Invalid choice: {data}, selection is case sensitive.")
+    except ValueError:
+        print(f"Invalid choice: {data}")
+        print("Please enter C or U(selection is case sensitive).\n")
+        return False
+
+    return True
 
 
 print("Welcome to Bakecake stock control terminal")
