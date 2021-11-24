@@ -12,14 +12,19 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
+
 def start():
     """
     Gets a user ID to grant access to the program
     repeats code unit a vadil ID is given.
     """
-    login = input("Please enter your Login ID: ")
-    print("-" * 30)
-    validate_id(login)
+    while True:
+        login = input("Please enter your Login ID: ")
+        print("-" * 30)
+
+        if validate_id(login):
+            print("valid ID, welcome")
+            break
 
 
 def validate_id(data):
@@ -29,13 +34,17 @@ def validate_id(data):
     and that they are the correct ones if not
     raises a ValueError.
     """
-    id = "1234"
-    
+    code = "1234"
+
     try:
-        if id != data:
+        if code != data:
             raise ValueError()
     except ValueError as e:
-        print(f"Incorrect ID: {data}, Please try again.")
+        print(f"{e}Incorrect ID: {data}, Please try again.")
+        print("x" * 30)
+        return False
+
+    return True
 
 
 print("Welcome to Bakecake stock control terminal")
