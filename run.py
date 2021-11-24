@@ -73,7 +73,7 @@ def validate_c_u(data):
         if data == update:
             print("update()")
         elif data == check:
-            print("check()")
+            get_stock_values()
         else:
             raise ValueError()
     except ValueError:
@@ -82,6 +82,20 @@ def validate_c_u(data):
         return False
 
     return True
+
+
+def get_stock_values():
+    """
+    get stock values and headings to create a dictionary
+    """
+    headings = SHEET.worksheet("stock").row_values(1)
+    stock = SHEET.worksheet("stock").get_all_values()
+    stock_row = stock[-1]
+    stock_table = {headings[i]: stock_row[i] for i in range(len(stock_row))}
+
+    print("All units are in grams.\n")
+    print(stock_table)
+
 
 
 print("Welcome to Bakecake stock control terminal")
