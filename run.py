@@ -12,8 +12,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
-stock = SHEET.worksheet('stock')
+def start():
+    """
+    Gets a user ID to grant access to the program
+    repeats code unit a vadil ID is given.
+    """
+    login = input("Please enter your Login ID: ")
+    print("-" * 30)
+    
 
-data = stock.get_all_values()
-
-print(data)
+print("Welcome to Bakecake stock control terminal")
+print("-" * 30)
+start()
