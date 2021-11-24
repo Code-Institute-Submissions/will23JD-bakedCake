@@ -19,7 +19,24 @@ def start():
     """
     login = input("Please enter your Login ID: ")
     print("-" * 30)
+    validate_id(login)
+
+
+def validate_id(data):
+    """
+    Checkes to see if the given id is correct.
+    Checkes to see if all values are integers
+    and that they are the correct ones if not
+    raises a ValueError.
+    """
+    id = "1234"
     
+    try:
+        if id != data:
+            raise ValueError()
+    except ValueError as e:
+        print(f"Incorrect ID: {data}, Please try again.")
+
 
 print("Welcome to Bakecake stock control terminal")
 print("-" * 30)
