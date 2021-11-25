@@ -57,22 +57,20 @@ def update_check():
         print("Would you like to update or check on stock levels?")
         user_choice = input("Enter C to check OR U to update: ")
 
-        if validate_c_u(user_choice):
+        if validate_c(user_choice):
             break
 
 
-def validate_c_u(data):
+def validate_c(data):
     """
     checks whether the user wants to update stock levels
     or check them.
     """
-    update = "U"
-    check = "C"
 
     try:
-        if data == update:
+        if data == "U":
             get_new_stock()
-        elif data == check:
+        elif data == "C":
             get_stock_values()
         else:
             raise ValueError()
@@ -104,7 +102,26 @@ def get_new_stock():
     """
 
     print("Would you like to up date all stocks or individual stocks?")
-    choice = input("Enter: all for all Or: ind for individual:")
+    choice = input("Enter: A for all Or: I for individual:")
+
+    validate_new_stock(choice)
+
+
+def validate_new_stock(data):
+    """
+    checks whether the user wants to update stock levels
+    or check them.
+    """
+    try:
+        if data == "A":
+            print("update_all()")
+        elif data == "I":
+            print("update_individual()")
+        else:
+            raise ValueError()
+    except ValueError:
+        print(f"Invalid choice: {data}")
+        print("Please enter A or I(selection is case sensitive).\n")
 
 
 def control():
