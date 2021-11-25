@@ -71,7 +71,7 @@ def validate_c_u(data):
 
     try:
         if data == update:
-            print("update()")
+            get_new_stock()
         elif data == check:
             get_stock_values()
         else:
@@ -95,6 +95,16 @@ def get_stock_values():
 
     print("All units are in grams.\n")
     print(stock_table)
+
+
+def get_new_stock():
+    """
+    Lets the user chose wether they want to update all stocks
+    or individual stocks.
+    """
+
+    print("Would you like to up date all stocks or individual stocks?")
+    choice = input("Enter: all for all Or: ind for individual:")
 
 
 def control():
