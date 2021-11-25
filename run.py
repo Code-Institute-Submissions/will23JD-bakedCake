@@ -129,15 +129,19 @@ def update_all():
     Get new data for all stock levels
     """
     headings = SHEET.worksheet("stock").row_values(1)
-    print("Remeber units are in gram's apart from eggs")
-    print("And should be separated by commas(1000, 200, ...)")
-    print(f"Enter new stock blow in the order {headings}")
-    all_stock = input("New stock: ")
+    while True:
+        print("Remeber units are in gram's apart from eggs")
+        print("And should be separated by commas(1000,200, ...)")
+        print(f"Enter new stock blow in the order {headings}")
+        all_stock = input("New stock: ")
 
-    new_stock = all_stock.split(",")
+        new_stock = all_stock.split(",")
 
-    validate_stock(new_stock)
+        if validate_stock(new_stock):
+            print("Correct input")
+            break
 
+    return new_stock       
 
 def validate_stock(data):
     """
@@ -153,6 +157,9 @@ def validate_stock(data):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
 
 
 def control():
