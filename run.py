@@ -69,7 +69,7 @@ def validate_c(data):
 
     try:
         if data == "U":
-            get_new_stock()
+            update_all()
         elif data == "C":
             get_stock_values()
         else:
@@ -93,35 +93,6 @@ def get_stock_values():
 
     print("All units are in grams.\n")
     print(stock_table)
-
-
-def get_new_stock():
-    """
-    Lets the user chose wether they want to update all stocks
-    or individual stocks.
-    """
-
-    print("Would you like to up date all stocks or individual stocks?")
-    choice = input("Enter: A for all Or: I for individual: ")
-
-    choice_new_stock(choice)
-
-
-def choice_new_stock(data):
-    """
-    checks whether the user wants to update stock levels
-    or check them.
-    """
-    try:
-        if data == "A":
-            update_all()
-        elif data == "I":
-            print("update_individual()")
-        else:
-            raise ValueError()
-    except ValueError:
-        print(f"Invalid choice: {data}")
-        print("Please enter A or I(selection is case sensitive).\n")
 
 
 def update_all():
