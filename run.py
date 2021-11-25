@@ -102,19 +102,19 @@ def get_new_stock():
     """
 
     print("Would you like to up date all stocks or individual stocks?")
-    choice = input("Enter: A for all Or: I for individual:")
+    choice = input("Enter: A for all Or: I for individual: ")
 
-    validate_new_stock(choice)
+    choice_new_stock(choice)
 
 
-def validate_new_stock(data):
+def choice_new_stock(data):
     """
     checks whether the user wants to update stock levels
     or check them.
     """
     try:
         if data == "A":
-            print("update_all()")
+            update_all()
         elif data == "I":
             print("update_individual()")
         else:
@@ -122,6 +122,37 @@ def validate_new_stock(data):
     except ValueError:
         print(f"Invalid choice: {data}")
         print("Please enter A or I(selection is case sensitive).\n")
+
+
+def update_all():
+    """
+    Get new data for all stock levels
+    """
+    headings = SHEET.worksheet("stock").row_values(1)
+    print("Remeber units are in gram's apart from eggs")
+    print("And should be separated by commas(1000, 200, ...)")
+    print(f"Enter new stock blow in the order {headings}")
+    all_stock = input("New stock: ")
+
+    new_stock = all_stock.split(",")
+
+    validate_stock(new_stock)
+
+
+def validate_stock(data):
+    """
+    The try, converts all string values into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't 7 values.
+    """
+    try:
+        [int(num) for num in data]
+        if len(data) != 7:
+            raise ValueError(
+                f"7 values required, you provided {len(data)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
 
 
 def control():
