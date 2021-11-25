@@ -141,7 +141,8 @@ def update_all():
             print("Correct input")
             break
 
-    return new_stock       
+    add_new_stock(new_stock)
+
 
 def validate_stock(data):
     """
@@ -160,6 +161,12 @@ def validate_stock(data):
         return False
 
     return True
+
+
+def add_new_stock(data):
+    print(f"Updating stock new {data}...")
+    stock = SHEET.worksheet("stock")
+    stock.append_row(data)
 
 
 def control():
