@@ -138,12 +138,20 @@ def validate_stock(data):
 
 
 def add_new_stock(data):
+    """
+    Add's new stock data to the worksheet.
+    """
     print(f"Updating stock new {data}...")
     stock = SHEET.worksheet("stock")
     stock.append_row(data)
 
 
 def continue_program(data):
+    """
+    checkes input is the right value.
+    if not raise ValueError>
+    if input is correct opens the asked for function.
+    """
     try:
         if data == "Y":
             update_all()
@@ -157,6 +165,9 @@ def continue_program(data):
 
 
 def control():
+    """
+    Main function which starts and controls the program
+    """
     print("Welcome to Bakecake stock control terminal")
     print("-" * 30)
     start()
