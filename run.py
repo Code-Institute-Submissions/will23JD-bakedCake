@@ -94,6 +94,9 @@ def get_stock_values():
     print("All units are in grams.\n")
     print(stock_table)
 
+    option = input("Would you like to update stocks Y/N: ")
+    continue_program(option)
+
 
 def update_all():
     """
@@ -138,6 +141,19 @@ def add_new_stock(data):
     print(f"Updating stock new {data}...")
     stock = SHEET.worksheet("stock")
     stock.append_row(data)
+
+
+def continue_program(data):
+    try:
+        if data == "Y":
+            update_all()
+        elif data == "N":
+            exit()
+        else:
+            raise ValueError()
+    except ValueError:
+        print(f"Invalid choice: {data}")
+        print("Please enter Y or N(selection is case sensitive).\n")
 
 
 def control():
