@@ -148,13 +148,15 @@ def update_ind():
     """
     function to change individual stock levels.
     """
-    headings = SHEET.worksheet("stock").row_values(1)
-    print(headings)
-    ind_c = input("Please enter the name of the stock to change: ")
-    ind_stock = input("And the new stock level: ")
+    while True:
+        headings = SHEET.worksheet("stock").row_values(1)
+        print(headings)
+        ind_c = input("Please enter the name of the stock to change: ")
+        ind_stock = input("And the new stock level: ")
 
-    val_ind_name(ind_c)
-    val_ind_stock(ind_stock)
+        if val_ind_name(ind_c) and val_ind_stock(ind_stock):
+            print("Valid data\n")
+            break
 
 
 def val_ind_name(name):
@@ -164,7 +166,9 @@ def val_ind_name(name):
             raise ValueError()
     except ValueError as e:
         print(f"{e}{name} is not in stock worksheet please try again.")
-    print("yes")
+        return False
+
+    return True
 
 
 def val_ind_stock(data):
@@ -175,7 +179,9 @@ def val_ind_stock(data):
         [int(num) for num in data]
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
-    print("yes")
+        return False
+
+    return True
 
 
 def add_new_stock(data):
