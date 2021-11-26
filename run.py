@@ -13,7 +13,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
 
-print(SHEET.sheet1.acell('A2'))
+print(SHEET.sheet1.acell('B2'))
 
 
 def start():
@@ -93,10 +93,9 @@ def get_stock_values():
     """
     get stock values and headings to create a dictionary
     """
-    headings = SHEET.worksheet("stock").row_values(1)
-    stock = SHEET.worksheet("stock").get_all_values()
-    stock_row = stock[-1]
-    stock_table = {headings[i]: stock_row[i] for i in range(len(stock_row))}
+    headings = SHEET.worksheet("stock").col_values(1)
+    stock = SHEET.worksheet("stock").col_values(2)
+    stock_table = {headings[i]: stock[i] for i in range(len(stock))}
 
     print("All units are in grams.\n")
     print(stock_table)
@@ -109,7 +108,7 @@ def update_all():
     """
     Get new data for all stock levels
     """
-    headings = SHEET.worksheet("stock").row_values(1)
+    headings = SHEET.worksheet("stock").col_values(1)
     while True:
         print("Remeber units are in gram's apart from eggs")
         print("And should be separated by commas(1000,200, ...)")
@@ -149,14 +148,16 @@ def update_ind():
     function to change individual stock levels.
     """
     while True:
-        headings = SHEET.worksheet("stock").row_values(1)
-        print(headings)
-        ind_c = input("Please enter the name of the stock to change: ")
+        headings = SHEET.worksheet("stock").col_values(1)
+        print({headings[i]: i + 1 for i in range(len(headings))})
+        ind_c = input("Please enter the number of the stock to change: ")
         ind_stock = input("And the new stock level: ")
 
         if val_ind_name(ind_c) and val_ind_stock(ind_stock):
             print("Valid data\n")
             break
+
+    update_stock(ind_c, ind_stock)
 
 
 def val_ind_name(name):
@@ -164,9 +165,12 @@ def val_ind_name(name):
     Function to check is input stock is on the worksheet.
     If not returns false causing the while loop to continue.
     """
-    headings = SHEET.worksheet("stock").row_values(1)
+    headings = SHEET.worksheet("stock").col_values(1)
+    index = []
+    for i in range(len(headings)):
+        index.append(i)
     try:
-        if name not in headings:
+        if int(name) not in index:
             raise ValueError()
     except ValueError as e:
         print(f"{e}{name} is not in stock worksheet please try again.")
@@ -194,8 +198,17 @@ def add_new_stock(data):
     Add's new stock data to the worksheet.
     """
     print(f"Updating stock new {data}...")
-    stock = SHEET.worksheet("stock")
-    stock.append_row(data)
+    all_stock = {data[i]: i + 1 for i in range(len(data))}
+    print(all_stock)
+    for name, stock in all_stock.items():
+        update_stock(name, stock)
+    # SHEET.sheet1.update()
+
+
+def update_stock(name, data):
+
+    print(f"{name}, {data}")
+    SHEET.sheet1.update_cell(name, 2, data)
 
 
 def continue_program(data):
