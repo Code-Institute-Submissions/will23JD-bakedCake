@@ -78,12 +78,12 @@ def validate_c(data):
         elif data == "2":
             update_all()
         elif data == "3":
-            print("update_ind()")
+            update_ind()
         else:
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
-        print("Please enter c or u(selection is case sensitive).\n")
+        print("Please enter 1, 2 or 3.\n")
         return False
 
     return True
@@ -142,6 +142,17 @@ def validate_stock(data):
         return False
 
     return True
+
+
+def update_ind():
+    """
+    function to change individual stock levels.
+    """
+    headings = SHEET.worksheet("stock").row_values(1)
+    print({headings[i]: 1 + i for i in range(len(headings))})
+    ind_c = input("Please enter the number of the stock to change: ")
+
+    print(ind_c)
 
 
 def add_new_stock(data):
