@@ -154,6 +154,7 @@ def update_ind():
     ind_stock = input("And the new stock level: ")
 
     val_ind_name(ind_c)
+    val_ind_stock(ind_stock)
 
 
 def val_ind_name(name):
@@ -163,7 +164,17 @@ def val_ind_name(name):
             raise ValueError()
     except ValueError as e:
         print(f"{e}{name} is not in stock worksheet please try again.")
+    print("yes")
 
+
+def val_ind_stock(data):
+    """
+    Validate if stock is a int.
+    """
+    try:
+        [int(num) for num in data]
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
     print("yes")
 
 
