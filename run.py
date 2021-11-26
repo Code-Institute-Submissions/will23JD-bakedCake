@@ -160,6 +160,10 @@ def update_ind():
 
 
 def val_ind_name(name):
+    """
+    Function to check is input stock is on the worksheet.
+    If not returns false causing the while loop to continue.
+    """
     headings = SHEET.worksheet("stock").row_values(1)
     try:
         if name not in headings:
@@ -174,6 +178,7 @@ def val_ind_name(name):
 def val_ind_stock(data):
     """
     Validate if stock is a int.
+    If not returns false causing the while loop to continue.
     """
     try:
         [int(num) for num in data]
