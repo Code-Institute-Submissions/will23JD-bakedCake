@@ -95,7 +95,7 @@ def get_stock_values():
     """
     headings = SHEET.worksheet("stock").col_values(1)
     stock = SHEET.worksheet("stock").col_values(2)
-    stock_table = {headings[i]: stock[i] for i in range(len(stock))}
+    stock_table = {headings[i]: stock[i] for i in range(len(headings))}
 
     print("All units are in grams.\n")
     print(stock_table)
@@ -200,7 +200,8 @@ def add_new_stock(data):
     print(f"Updating stock new {data}...")
     all_stock = {data[i]: i + 1 for i in range(len(data))}
     print(all_stock)
-    for name, stock in all_stock.items():
+
+    for stock, name in all_stock.items():
         update_stock(name, stock)
     # SHEET.sheet1.update()
 
