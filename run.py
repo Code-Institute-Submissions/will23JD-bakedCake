@@ -13,6 +13,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
 
+print(SHEET.sheet1.acell('A2'))
+
+
 def start():
     """
     Gets a user ID to grant access to the program
@@ -35,7 +38,7 @@ def validate_id(data):
     and that they are the correct ones if not
     raises a ValueError.
     """
-    code = "1234"
+    code = "1"
 
     try:
         if code != data:
@@ -54,8 +57,10 @@ def update_check():
     or update them.
     """
     while True:
-        print("Would you like to update or check on stock levels?")
-        user_choice = input("Enter C to check OR U to update: ")
+        print("To check all stock levels press: 1")
+        print("To update all stock levels press: 2")
+        print("To update individual stock levels press: 3")
+        user_choice = input("Enter: ")
 
         if validate_c(user_choice):
             break
@@ -68,15 +73,17 @@ def validate_c(data):
     """
 
     try:
-        if data == "U":
-            update_all()
-        elif data == "C":
+        if data == "1":
             get_stock_values()
+        elif data == "2":
+            update_all()
+        elif data == "3":
+            print("update_ind()")
         else:
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
-        print("Please enter C or U(selection is case sensitive).\n")
+        print("Please enter c or u(selection is case sensitive).\n")
         return False
 
     return True
@@ -153,15 +160,15 @@ def continue_program(data):
     if input is correct opens the asked for function.
     """
     try:
-        if data == "Y":
+        if data == "y":
             update_all()
-        elif data == "N":
+        elif data == "n":
             exit()
         else:
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
-        print("Please enter Y or N(selection is case sensitive).\n")
+        print("Please enter y or n(selection is case sensitive).\n")
 
 
 def control():
