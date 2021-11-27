@@ -61,6 +61,7 @@ def update_check():
         print("To update all stock levels press: 2")
         print("To update individual stock levels pressS: 3")
         print("To add a new item enter: 4")
+        print("To delete a item enter: 5")
         user_choice = input("Enter: ")
 
         if validate_c(user_choice):
@@ -82,6 +83,8 @@ def validate_c(data):
             update_ind()
         elif data == "4":
             add_items()
+        elif data == "5":
+            get_del_item()
         else:
             raise ValueError()
     except ValueError:
@@ -241,6 +244,27 @@ def append_n_stock(name, data):
         new = i + 2
     SHEET.sheet1.update_cell(new, 1, name)
     SHEET.sheet1.update_cell(new, 2, data)
+
+
+def get_del_item():
+    """
+    Get user choice for item to delete from google sheets.
+    Pass choice to validation to check its an int.
+    """
+    while True:
+        print("Please enter the number of the item you would like to delete.")
+        headings = SHEET.worksheet("stock").col_values(1)
+        print({headings[i]: i + 1 for i in range(len(headings))})
+        remove = input("Enter: ")
+
+        if val_ind_name(remove):
+            break
+
+    delete_item(remove)
+
+
+def delete_item(row):
+    print(row)
 
 
 def continue_program(data):
