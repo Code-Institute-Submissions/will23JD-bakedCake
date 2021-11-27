@@ -264,7 +264,10 @@ def get_del_item():
 
 
 def delete_item(row):
-    print(row)
+    """
+    get row from user input and delete from google sheet.
+    """
+    SHEET.sheet1.delete_rows(int(row))
 
 
 def continue_program(data):
