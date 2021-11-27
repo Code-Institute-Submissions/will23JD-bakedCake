@@ -138,11 +138,15 @@ def validate_stock(data):
     Raises ValueError if strings cannot be converted into int,
     or if there aren't 7 values.
     """
+    headings = SHEET.worksheet("stock").col_values(1)
+    index = []
+    for i in range(len(headings)):
+        index.append(i)
     try:
         [int(num) for num in data]
-        if len(data) != 7:
+        if len(data) != len(index):
             raise ValueError(
-                f"7 values required, you provided {len(data)}"
+                f"{len(index)} values required, you provided {len(data)}"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
