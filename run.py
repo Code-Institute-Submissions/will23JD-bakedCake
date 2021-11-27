@@ -104,7 +104,8 @@ def get_stock_values():
     stock_table = {headings[i]: stock[i] for i in range(len(headings))}
 
     print("All units are in grams.\n")
-    print(stock_table)
+    for key, value in stock_table.items():
+        print(key, ':', value)
 
     option = input("Would you like to update stocks Y/N: ")
     continue_program(option)
@@ -155,7 +156,9 @@ def update_ind():
     """
     while True:
         headings = SHEET.worksheet("stock").col_values(1)
-        print({headings[i]: i + 1 for i in range(len(headings))})
+        names = {headings[i]: i + 1 for i in range(len(headings))}
+        for key, value in names.items():
+            print(key, ':', value)
         ind_c = input("Please enter the number of the stock to change: ")
         ind_stock = input("And the new stock level: ")
 
@@ -257,7 +260,9 @@ def get_del_item():
     while True:
         print("Please enter the number of the item you would like to delete.")
         headings = SHEET.worksheet("stock").col_values(1)
-        print({headings[i]: i + 1 for i in range(len(headings))})
+        names = {headings[i]: i + 1 for i in range(len(headings))}
+        for key, value in names.items():
+            print(key, ':', value)
         remove = input("Enter: ")
 
         if val_ind_name(remove):
