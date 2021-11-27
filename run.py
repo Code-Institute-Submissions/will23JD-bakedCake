@@ -213,6 +213,9 @@ def add_new_stock(data):
 
 
 def update_stock(name, data):
+    """
+    Add new stock name and stock level to google sheet.
+    """
 
     print(f"{name}, {data}")
     SHEET.sheet1.update_cell(name, 2, data)
