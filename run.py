@@ -57,12 +57,13 @@ def update_check():
     or update them.
     """
     while True:
-        print("To check all stock levels press: 1")
-        print("To update all stock levels press: 2")
-        print("To update individual stock levels pressS: 3")
+        print("To check all stock levels enter: 1")
+        print("To update all stock levels enter: 2")
+        print("To update individual stock levels enter: 3")
         print("To add a new item enter: 4")
         print("To delete a item enter: 5")
         user_choice = input("Enter: ")
+        print("-" * 30)
 
         if validate_c(user_choice):
             break
@@ -89,7 +90,7 @@ def validate_c(data):
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
-        print("Please enter 1, 2 or 3.\n")
+        print("Please enter 1, 2, 3, 4 or 5.\n")
         return False
 
     return True
@@ -105,9 +106,9 @@ def get_stock_values():
 
     print("All units are in grams.\n")
     for key, value in stock_table.items():
-        print(key, ':', value)
+        print(f"{key} : {value}")
 
-    option = input("Would you like to update stocks Y/N: ")
+    option = input("Would you like to update stocks y/n: ")
     continue_program(option)
 
 
@@ -119,7 +120,7 @@ def update_all():
     while True:
         print("Remeber units are in gram's apart from eggs")
         print("And should be separated by commas(1000,200, ...)")
-        print(f"Enter new stock blow in the order {headings}")
+        print(f"Enter new stock blow in the order {headings}\n")
         all_stock = input("New stock: ")
 
         new_stock = all_stock.split(",")
@@ -158,15 +159,15 @@ def update_ind():
         headings = SHEET.worksheet("stock").col_values(1)
         names = {headings[i]: i + 1 for i in range(len(headings))}
         for key, value in names.items():
-            print(key, ':', value)
-        ind_c = input("Please enter the number of the stock to change: ")
+            print(f"{key} : {value}")
+        ind_c = input("\nPlease enter the number of the stock to change: ")
         ind_stock = input("And the new stock level: ")
 
         if val_ind_name(ind_c) and val_ind_stock(ind_stock):
-            print("Valid data\n")
             break
-
+    print("\nAdding new stock...")
     update_stock(ind_c, ind_stock)
+    print("New stock added.")
 
 
 def val_ind_name(name):
@@ -206,21 +207,18 @@ def add_new_stock(data):
     """
     Add's new stock data to the worksheet.
     """
-    print(f"Updating stock new {data}...")
+    print(f"Adding stock new {data}...")
     all_stock = {data[i]: i + 1 for i in range(len(data))}
-    print(all_stock)
 
     for stock, name in all_stock.items():
         update_stock(name, stock)
-    # SHEET.sheet1.update()
+    print("New stock added.")
 
 
 def update_stock(name, data):
     """
     Add new stock name and stock level to google sheet.
     """
-
-    print(f"{name}, {data}")
     SHEET.sheet1.update_cell(name, 2, data)
 
 
@@ -230,15 +228,16 @@ def add_items():
     pass them to validation function.
     """
     while True:
-        print("Please enter the name of the item you wish to add")
+        print("Please enter the name of the item you wish to add:")
         name = input("Enter: ")
-        print("Please enter the quantity of the item(enter 0 if n/a)")
+        print("\nPlease enter the quantity of the item(in grams)")
         stock = input("Enter: ")
 
         if val_ind_stock(stock):
             break
-
+    print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
+    print(f"New item: {name} and value: {stock} Added.")
 
 
 def append_n_stock(name, data):
@@ -263,12 +262,13 @@ def get_del_item():
         names = {headings[i]: i + 1 for i in range(len(headings))}
         for key, value in names.items():
             print(key, ':', value)
-        remove = input("Enter: ")
+        remove = input("\nEnter: ")
 
         if val_ind_name(remove):
             break
-
+    print("\nRemoving item....")
     delete_item(remove)
+    print("Item deleted.")
 
 
 def delete_item(row):
@@ -281,7 +281,7 @@ def delete_item(row):
 def continue_program(data):
     """
     checkes input is the right value.
-    if not raise ValueError>
+    if not raise ValueError
     if input is correct opens the asked for function.
     """
     try:
