@@ -174,7 +174,7 @@ def val_ind_name(name):
     headings = SHEET.worksheet("stock").col_values(1)
     index = []
     for i in range(len(headings)):
-        index.append(i)
+        index.append(i + 1)
     try:
         if int(name) not in index:
             raise ValueError()
