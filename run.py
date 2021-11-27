@@ -220,17 +220,27 @@ def add_items():
     Get new stock new and stock level.
     pass them to validation function.
     """
-    print("Please enter the name of the item you wish to add")
-    name = input("Enter: ")
-    print("Please enter the quantity of the item(enter 0 if n/a)")
-    stock = input("Enter: ")
+    while True:
+        print("Please enter the name of the item you wish to add")
+        name = input("Enter: ")
+        print("Please enter the quantity of the item(enter 0 if n/a)")
+        stock = input("Enter: ")
 
-    val_n_items(name, stock)
+        if val_ind_stock(stock):
+            break
+
+    append_n_stock(name, stock)
 
 
-def val_n_items(name, data):
-    print(name)
-    print(data)
+def append_n_stock(name, data):
+    """
+    Append new stock new and data.
+    """
+    headings = SHEET.worksheet("stock").col_values(1)
+    for i in range(len(headings)):
+        new = i + 2
+    SHEET.sheet1.update_cell(new, 1, name)
+    SHEET.sheet1.update_cell(new, 2, data)
 
 
 def continue_program(data):
