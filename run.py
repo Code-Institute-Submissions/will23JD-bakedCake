@@ -216,7 +216,21 @@ def update_stock(name, data):
 
 
 def add_items():
-    print("works")
+    """
+    Get new stock new and stock level.
+    pass them to validation function.
+    """
+    print("Please enter the name of the item you wish to add")
+    name = input("Enter: ")
+    print("Please enter the quantity of the item(enter 0 if n/a)")
+    stock = input("Enter: ")
+
+    val_n_items(name, stock)
+
+
+def val_n_items(name, data):
+    print(name)
+    print(data)
 
 
 def continue_program(data):
