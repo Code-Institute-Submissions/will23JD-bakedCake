@@ -59,7 +59,8 @@ def update_check():
     while True:
         print("To check all stock levels press: 1")
         print("To update all stock levels press: 2")
-        print("To update individual stock levels press: 3")
+        print("To update individual stock levels pressS: 3")
+        print("To add a new item enter: 4")
         user_choice = input("Enter: ")
 
         if validate_c(user_choice):
@@ -79,6 +80,8 @@ def validate_c(data):
             update_all()
         elif data == "3":
             update_ind()
+        elif data == "4":
+            add_items()
         else:
             raise ValueError()
     except ValueError:
@@ -210,6 +213,10 @@ def update_stock(name, data):
 
     print(f"{name}, {data}")
     SHEET.sheet1.update_cell(name, 2, data)
+
+
+def add_items():
+    print("works")
 
 
 def continue_program(data):
