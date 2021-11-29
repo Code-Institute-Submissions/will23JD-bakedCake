@@ -255,9 +255,8 @@ def add_items():
     print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
     print(f"New item: {name} and value: {stock} Added.")
-    option = input("\nWould you like to continue(c) or logout(l): ")
     spacer(35)
-    continue_program(option)
+    exit()
 
 
 def append_n_stock(name, data):
@@ -290,9 +289,8 @@ def get_del_item():
     print("\nRemoving item....")
     delete_item(remove)
     print("Item deleted.")
-    option = input("\nWould you like to continue(c) or logout(l): ")
     spacer(35)
-    continue_program(option)
+    exit()
 
 
 def delete_item(row):
