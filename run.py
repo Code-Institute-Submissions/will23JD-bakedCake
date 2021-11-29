@@ -21,11 +21,11 @@ def start():
     """
     while True:
         login = input("Please enter your Login ID: ")
-        print("-" * 30)
+        spacer(35)
 
         if validate_id(login):
             print("valid ID, welcome")
-            print("-" * 30)
+            spacer(35)
             break
 
 
@@ -61,7 +61,7 @@ def update_check():
         print("To add a new item enter: 4")
         print("To delete a item enter: 5")
         user_choice = input("Enter: ")
-        print("-" * 30)
+        spacer(35)
 
         if validate_c(user_choice):
             break
@@ -103,13 +103,13 @@ def get_stock_values():
     stock = SHEET.worksheet("stock").col_values(2)
     stock_table = {headings[i]: stock[i] for i in range(len(headings))}
     print("STOCK TABLE")
-    print("-" * 30)
+    spacer(35)
     print("All units are in grams.\n")
     for key, value in stock_table.items():
         print(f"{key} : {value}")
 
     option = input("\nWould you like to continue(c) or logout(l): ")
-    print("-" * 30)
+    spacer(35)
     continue_program(option)
 
 
@@ -119,7 +119,7 @@ def update_all():
     """
     clear_console()
     print("UPDATE ALL STOCK")
-    print("-" * 30)
+    spacer(35)
     headings = SHEET.worksheet("stock").col_values(1)
     while True:
         print("Remeber units are in gram's apart from eggs")
@@ -165,7 +165,7 @@ def update_ind():
     """
     clear_console()
     print("UPDATE INDIVIDUAL STOCK")
-    print("-" * 30)
+    spacer(35)
     while True:
         headings = SHEET.worksheet("stock").col_values(1)
         names = {headings[i]: i + 1 for i in range(len(headings))}
@@ -180,7 +180,7 @@ def update_ind():
     update_stock(ind_c, ind_stock)
     print("New stock added.")
     option = input("\nWould you like to continue(c) or logout(l): ")
-    print("-" * 30)
+    spacer(35)
     continue_program(option)
 
 
@@ -228,7 +228,7 @@ def add_new_stock(data):
         update_stock(name, stock)
     print("New stock added.")
     option = input("\nWould you like to continue(c) or logout(l): ")
-    print("-" * 30)
+    spacer(35)
     continue_program(option)
 
 
@@ -246,7 +246,7 @@ def add_items():
     """
     clear_console()
     print("ADD NEW ITEM")
-    print("-" * 30)
+    spacer(35)
     while True:
         print("Please enter the name of the item you wish to add:")
         name = input("Enter: ")
@@ -259,7 +259,7 @@ def add_items():
     append_n_stock(name, stock)
     print(f"New item: {name} and value: {stock} Added.")
     option = input("\nWould you like to continue(c) or logout(l): ")
-    print("-" * 30)
+    spacer(35)
     continue_program(option)
 
 
@@ -281,7 +281,7 @@ def get_del_item():
     """
     clear_console()
     print("DELETE ITEM")
-    print("-" * 30)
+    spacer(35)
     while True:
         print("Please enter the number of the item you would like to delete.")
         headings = SHEET.worksheet("stock").col_values(1)
@@ -296,7 +296,7 @@ def get_del_item():
     delete_item(remove)
     print("Item deleted.")
     option = input("\nWould you like to continue(c) or logout(l): ")
-    print("-" * 30)
+    spacer(35)
     continue_program(option)
 
 
@@ -334,13 +334,20 @@ def clear_console():
     os.system(command)
 
 
+def spacer(num):
+    """
+    creates a ---- string to space out text.
+    """
+    print("-" * num)
+
+
 def control():
     """
     Main function which starts and controls the program
     """
     clear_console()
     print("Welcome to Bakecake stock control terminal")
-    print("-" * 30)
+    spacer(35)
     start()
     clear_console()
     update_check()
