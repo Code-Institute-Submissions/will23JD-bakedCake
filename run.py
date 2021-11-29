@@ -108,7 +108,8 @@ def get_stock_values():
     for key, value in stock_table.items():
         print(f"{key} : {value}")
 
-    option = input("Would you like to update stocks y/n: ")
+    option = input("Would you like to continue(c) or logout(l)\n: ")
+    print("-" * 30)
     continue_program(option)
 
 
@@ -172,6 +173,9 @@ def update_ind():
     print("\nAdding new stock...")
     update_stock(ind_c, ind_stock)
     print("New stock added.")
+    option = input("Would you like to continue(c) or logout(l)\n: ")
+    print("-" * 30)
+    continue_program(option)
 
 
 def val_ind_name(name):
@@ -217,6 +221,9 @@ def add_new_stock(data):
     for stock, name in all_stock.items():
         update_stock(name, stock)
     print("New stock added.")
+    option = input("Would you like to continue(c) or logout(l)\n: ")
+    print("-" * 30)
+    continue_program(option)
 
 
 def update_stock(name, data):
@@ -242,6 +249,9 @@ def add_items():
     print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
     print(f"New item: {name} and value: {stock} Added.")
+    option = input("Would you like to continue(c) or logout(l)\n: ")
+    print("-" * 30)
+    continue_program(option)
 
 
 def append_n_stock(name, data):
@@ -273,6 +283,9 @@ def get_del_item():
     print("\nRemoving item....")
     delete_item(remove)
     print("Item deleted.")
+    option = input("Would you like to continue(c) or logout(l)\n: ")
+    print("-" * 30)
+    continue_program(option)
 
 
 def delete_item(row):
@@ -284,20 +297,19 @@ def delete_item(row):
 
 def continue_program(data):
     """
-    checkes input is the right value.
-    if not raise ValueError
-    if input is correct opens the asked for function.
+    Get's use input if they want to continue or logout.
+    Validates respons with try statement.
     """
     try:
-        if data == "y":
-            update_all()
-        elif data == "n":
-            exit()
+        if data == "c":
+            update_check()
+        elif data == "l":
+            control()
         else:
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
-        print("Please enter y or n(selection is case sensitive).\n")
+        print("Please enter c or l(selection is case sensitive).\n")
 
 
 def control():
