@@ -67,12 +67,28 @@ Users can check, update all or update individual stock levels, as well as being 
 
 ![View of updating all stock levels](assets/images/del.png)
 
+## Input validation and error checking
+
+The code uses try expect statements in order to validate the users input to catch error and keep the program running correctly.
+
 ###  Features Left to Implement
+
+* Add different access ID allowing for some features to only be avaible to higher up users(like delete).
 
 ## Testing
 
+I have manually tested this project by:
 
 ### Validator Testing
+
+* passing the code through [PEP8 linter](http://pep8online.com/).
+
+![View of updating all stock levels](assets/images/pep8.png)
+
+* Giving invalid inputs Eg: passing to many numbers to update, strings for numbers, wrong ID.
+* I have done this testing throughout building my project in my local and Code Institue Heroku terminals.
+
+I have also giving the link to my Heroku app to friends and family in order for them to test it to.
 
 
 ### Fixed Bugs 
@@ -83,8 +99,19 @@ Users can check, update all or update individual stock levels, as well as being 
 
 ## Technologies Used
 
+### Languages Used
+
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language)).
+
+### Framework, Libraries and Programs used
+
+* [Google sheets](https://www.google.co.uk/sheets/about/)
+* [Google Cloud](https://cloud.google.com/)
+* [Heroku](https://signup.heroku.com/login)
 
 ## Deployment
+
+### Delpoying to Heroku
 
 
 ### Forking the GitHub Repository
@@ -97,7 +124,11 @@ Forking the repository allows us to have a copy of the original repository to vi
 
 ## Credits
 
-### Code 
+* Code Institue for:
+    * Deployment terminal
+    * Setting up and accessing google sheets
+    * validating strings into numbers and checking the number of them
 
+[DelfStack](https://www.delftstack.com/howto/python/python-clear-console/) for code to clear the terminal. 
 
 ### Acknowledgements
