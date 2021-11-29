@@ -1,5 +1,12 @@
-# Title
+# BakedCake stock control terminal
 
+This python project is a stock control modal, which as been built in the for a baking company. But can easily be used for any business.
+
+Users can check, update all or update individual stock levels, as well as being able to add or remove items.
+
+[View the live project here.](https://baked-cake.herokuapp.com/)
+
+![View of website on different screen sizes.](assets/images/air.png)
 ## User Experience (UX)
 
 * ## Use Goals
