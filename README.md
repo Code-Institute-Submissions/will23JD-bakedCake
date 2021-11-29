@@ -17,11 +17,55 @@ Users can check, update all or update individual stock levels, as well as being 
 
 ## User Experience (UX)
 
-* ## Use Goals
+## User Goals
 
+* As a user I want to be able to easily be able to: 
+    * Get all stock levels 
+    * Update all stock levels
+    * Update individual stock levels
+    * Add new items 
+    * Delete items.
 
 ## Features
 
+### Login ID
+* User is asked for a login ID in order to access program.
+
+![View of login request](assets/images/login.png)
+ 
+* If user doesn't prodive the correct login an error will form and ask for the ID again.
+
+![View of login request error](assets/images/login_e.png)
+
+### Give to user the choice of avaible option to take.
+
+![View of login request error](assets/images/choices.png)
+
+* The user can the select which option by entering the number.
+
+#### Entering 1 prints out a stock table
+
+![View of stock levels](assets/images/stock_l.png)
+
+#### Entering 2 allows the user to update all stocks
+
+![View of updating all stock levels](assets/images/update_a.png)
+
+* This tells the user how to enter the new information.
+
+#### Entering 3 allows the user to update individual stocks
+
+![View of updating all stock levels](assets/images/update_i.png)
+
+* This allows the user to update individual stocks if not all need to be updated.
+
+#### Entering 4 allows the user to add a new item
+
+![View of updating all stock levels](assets/images/add.png)
+
+#### Entering 5 allows the user to delete an item if needed
+
+![View of updating all stock levels](assets/images/del.png)
 
 ###  Features Left to Implement
 
