@@ -14,9 +14,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
 
-print(SHEET.sheet1.acell('B2'))
-
-
 def start():
     """
     Gets a user ID to grant access to the program
@@ -101,11 +98,12 @@ def get_stock_values():
     """
     get stock values and headings to create a dictionary
     """
-    clearConsole()
+    clear_console()
     headings = SHEET.worksheet("stock").col_values(1)
     stock = SHEET.worksheet("stock").col_values(2)
     stock_table = {headings[i]: stock[i] for i in range(len(headings))}
-
+    print("STOCK TABLE")
+    print("-" * 30)
     print("All units are in grams.\n")
     for key, value in stock_table.items():
         print(f"{key} : {value}")
@@ -119,7 +117,9 @@ def update_all():
     """
     Get new data for all stock levels
     """
-    clearConsole()
+    clear_console()
+    print("UPDATE ALL STOCK")
+    print("-" * 30)
     headings = SHEET.worksheet("stock").col_values(1)
     while True:
         print("Remeber units are in gram's apart from eggs")
@@ -163,7 +163,9 @@ def update_ind():
     """
     function to change individual stock levels.
     """
-    clearConsole()
+    clear_console()
+    print("UPDATE INDIVIDUAL STOCK")
+    print("-" * 30)
     while True:
         headings = SHEET.worksheet("stock").col_values(1)
         names = {headings[i]: i + 1 for i in range(len(headings))}
@@ -242,7 +244,9 @@ def add_items():
     Get new stock new and stock level.
     pass them to validation function.
     """
-    clearConsole()
+    clear_console()
+    print("ADD NEW ITEM")
+    print("-" * 30)
     while True:
         print("Please enter the name of the item you wish to add:")
         name = input("Enter: ")
@@ -275,7 +279,9 @@ def get_del_item():
     Get user choice for item to delete from google sheets.
     Pass choice to validation to check its an int.
     """
-    clearConsole()
+    clear_console()
+    print("DELETE ITEM")
+    print("-" * 30)
     while True:
         print("Please enter the number of the item you would like to delete.")
         headings = SHEET.worksheet("stock").col_values(1)
@@ -310,7 +316,7 @@ def continue_program(data):
         if data == "c":
             update_check()
         elif data == "l":
-            exit()
+            control()
         else:
             raise ValueError()
     except ValueError:
@@ -318,7 +324,10 @@ def continue_program(data):
         print("Please enter c or l(selection is case sensitive).\n")
 
 
-def clearConsole():
+def clear_console():
+    """
+    Clears the terminal to stop it getting cluttered
+    """
     command = 'clear'
     if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
         command = 'cls'
@@ -329,10 +338,11 @@ def control():
     """
     Main function which starts and controls the program
     """
+    clear_console()
     print("Welcome to Bakecake stock control terminal")
     print("-" * 30)
     start()
-    clearConsole()
+    clear_console()
     update_check()
 
 
