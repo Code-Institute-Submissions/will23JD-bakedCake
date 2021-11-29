@@ -1,3 +1,4 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -100,6 +101,7 @@ def get_stock_values():
     """
     get stock values and headings to create a dictionary
     """
+    clearConsole()
     headings = SHEET.worksheet("stock").col_values(1)
     stock = SHEET.worksheet("stock").col_values(2)
     stock_table = {headings[i]: stock[i] for i in range(len(headings))}
@@ -108,7 +110,7 @@ def get_stock_values():
     for key, value in stock_table.items():
         print(f"{key} : {value}")
 
-    option = input("Would you like to continue(c) or logout(l)\n: ")
+    option = input("\nWould you like to continue(c) or logout(l): ")
     print("-" * 30)
     continue_program(option)
 
@@ -117,6 +119,7 @@ def update_all():
     """
     Get new data for all stock levels
     """
+    clearConsole()
     headings = SHEET.worksheet("stock").col_values(1)
     while True:
         print("Remeber units are in gram's apart from eggs")
@@ -160,6 +163,7 @@ def update_ind():
     """
     function to change individual stock levels.
     """
+    clearConsole()
     while True:
         headings = SHEET.worksheet("stock").col_values(1)
         names = {headings[i]: i + 1 for i in range(len(headings))}
@@ -173,7 +177,7 @@ def update_ind():
     print("\nAdding new stock...")
     update_stock(ind_c, ind_stock)
     print("New stock added.")
-    option = input("Would you like to continue(c) or logout(l)\n: ")
+    option = input("\nWould you like to continue(c) or logout(l): ")
     print("-" * 30)
     continue_program(option)
 
@@ -221,7 +225,7 @@ def add_new_stock(data):
     for stock, name in all_stock.items():
         update_stock(name, stock)
     print("New stock added.")
-    option = input("Would you like to continue(c) or logout(l)\n: ")
+    option = input("\nWould you like to continue(c) or logout(l): ")
     print("-" * 30)
     continue_program(option)
 
@@ -238,6 +242,7 @@ def add_items():
     Get new stock new and stock level.
     pass them to validation function.
     """
+    clearConsole()
     while True:
         print("Please enter the name of the item you wish to add:")
         name = input("Enter: ")
@@ -249,7 +254,7 @@ def add_items():
     print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
     print(f"New item: {name} and value: {stock} Added.")
-    option = input("Would you like to continue(c) or logout(l)\n: ")
+    option = input("\nWould you like to continue(c) or logout(l): ")
     print("-" * 30)
     continue_program(option)
 
@@ -270,6 +275,7 @@ def get_del_item():
     Get user choice for item to delete from google sheets.
     Pass choice to validation to check its an int.
     """
+    clearConsole()
     while True:
         print("Please enter the number of the item you would like to delete.")
         headings = SHEET.worksheet("stock").col_values(1)
@@ -283,7 +289,7 @@ def get_del_item():
     print("\nRemoving item....")
     delete_item(remove)
     print("Item deleted.")
-    option = input("Would you like to continue(c) or logout(l)\n: ")
+    option = input("\nWould you like to continue(c) or logout(l): ")
     print("-" * 30)
     continue_program(option)
 
@@ -304,12 +310,19 @@ def continue_program(data):
         if data == "c":
             update_check()
         elif data == "l":
-            control()
+            exit()
         else:
             raise ValueError()
     except ValueError:
         print(f"Invalid choice: {data}")
         print("Please enter c or l(selection is case sensitive).\n")
+
+
+def clearConsole():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
 
 
 def control():
@@ -319,6 +332,7 @@ def control():
     print("Welcome to Bakecake stock control terminal")
     print("-" * 30)
     start()
+    clearConsole()
     update_check()
 
 
