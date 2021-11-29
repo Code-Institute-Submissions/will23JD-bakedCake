@@ -7,6 +7,14 @@ Users can check, update all or update individual stock levels, as well as being 
 [View the live project here.](https://baked-cake.herokuapp.com/)
 
 ![View of website on different screen sizes.](assets/images/air.png)
+
+## How to use the site
+
+* First the user be asked to provide a login, so not anyone can have access to the program. The current ID being 1.
+* Next the user will be asked wich task they would like to perform, which can be selected through the numbers prodived.
+* After the task is completed you will be asked if you wish to continue or logout.
+    * continuing will be the user back to the choice of tasks and loging out will bring the user back to the login page.
+
 ## User Experience (UX)
 
 * ## Use Goals
