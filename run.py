@@ -13,6 +13,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Bakedcake')
 
+HEADINGS = SHEET.worksheet("stock").col_values(1)
+
 
 def start():
     """
@@ -99,9 +101,8 @@ def get_stock_values():
     get stock values and headings to create a dictionary
     """
     clear_console()
-    headings = SHEET.worksheet("stock").col_values(1)
     stock = SHEET.worksheet("stock").col_values(2)
-    stock_table = {headings[i]: stock[i] for i in range(len(headings))}
+    stock_table = {HEADINGS[i]: stock[i] for i in range(len(HEADINGS))}
     print("STOCK TABLE")
     spacer(35)
     print("All units are in grams.\n")
@@ -120,11 +121,10 @@ def update_all():
     clear_console()
     print("UPDATE ALL STOCK")
     spacer(35)
-    headings = SHEET.worksheet("stock").col_values(1)
     while True:
         print("Remeber units are in gram's apart from eggs")
         print("And should be separated by commas(1000,200, ...)")
-        print(f"Enter new stock blow in the order {headings}\n")
+        print(f"Enter new stock blow in the order {HEADINGS}\n")
         all_stock = input("New stock: ")
 
         new_stock = all_stock.split(",")
@@ -142,9 +142,8 @@ def validate_stock(data):
     Raises ValueError if strings cannot be converted into int,
     or if there aren't 7 values.
     """
-    headings = SHEET.worksheet("stock").col_values(1)
     index = []
-    for i in range(len(headings)):
+    for i in range(len(HEADINGS)):
         index.append(i)
     try:
         [int(num) for num in data]
@@ -167,8 +166,7 @@ def update_ind():
     print("UPDATE INDIVIDUAL STOCK")
     spacer(35)
     while True:
-        headings = SHEET.worksheet("stock").col_values(1)
-        names = {headings[i]: i + 1 for i in range(len(headings))}
+        names = {HEADINGS[i]: i + 1 for i in range(len(HEADINGS))}
         for key, value in names.items():
             print(f"{key} : {value}")
         ind_c = input("\nPlease enter the number of the stock to change: ")
@@ -189,9 +187,8 @@ def val_ind_name(name):
     Function to check is input stock is on the worksheet.
     If not returns false causing the while loop to continue.
     """
-    headings = SHEET.worksheet("stock").col_values(1)
     index = []
-    for i in range(len(headings)):
+    for i in range(len(HEADINGS)):
         index.append(i + 1)
     try:
         if int(name) not in index:
@@ -267,8 +264,7 @@ def append_n_stock(name, data):
     """
     Append new stock new and data.
     """
-    headings = SHEET.worksheet("stock").col_values(1)
-    for i in range(len(headings)):
+    for i in range(len(HEADINGS)):
         new = i + 2
     SHEET.sheet1.update_cell(new, 1, name)
     SHEET.sheet1.update_cell(new, 2, data)
@@ -284,8 +280,7 @@ def get_del_item():
     spacer(35)
     while True:
         print("Please enter the number of the item you would like to delete.")
-        headings = SHEET.worksheet("stock").col_values(1)
-        names = {headings[i]: i + 1 for i in range(len(headings))}
+        names = {HEADINGS[i]: i + 1 for i in range(len(HEADINGS))}
         for key, value in names.items():
             print(key, ':', value)
         remove = input("\nEnter: ")
