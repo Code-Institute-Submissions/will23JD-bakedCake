@@ -154,3 +154,5 @@ Forking the repository allows us to have a copy of the original repository to vi
 [DelfStack](https://www.delftstack.com/howto/python/python-clear-console/) for code to clear the terminal. 
 
 ### Acknowledgements
+* My Mentor for feedback throughout the project.
+* Friends and family for help with testing and feedback
