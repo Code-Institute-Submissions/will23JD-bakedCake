@@ -113,6 +113,22 @@ I have also giving the link to my Heroku app to friends and family in order for 
 
 ### Delpoying to Heroku
 
+1. In order for Heroku to install dependenies for the project to run you need to add your requirements to requirements.txt. In order to do this you need to type:
+pip3 freeze > requirements.txt in to the terminal.(The files name needs to be exactly the same in order to work).
+2. Next you need to commit and push the changes to git hub.
+3. Now you need to create or login in to your [Heroku](https://signup.heroku.com/login) account.
+4. Press create new app.
+5. Give your app a unique name and select you're region. Then click create app.
+6. Now you've created the new app had to the settings page using the navigation bar at the top.
+7. Now find the config vars, and create one.
+8. In the field for key enter CREDS and for the value copy and paste the entire creds.json file.
+9. Next add another config var, with the key being PORT and the value being 8000.
+10. Now add 2 build packs(found under config vars) the first being python and the second being nodejs. Make sure that python is ontop.
+11. Next scrool back to the top and click on the delopy button.
+12. Select GitHub for your deplyment method. Then confirm you want to connect to GitHub.
+13. Now you can search for you GitHub repositorie.
+14. Lastly scroll down to manualy deploy and press deploy branch. (after the app is deployed you can enable automatic deploys to update your app every time you push to GitHub).
+15. Now your code is a Heroku app.
 
 ### Forking the GitHub Repository
 
