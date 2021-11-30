@@ -151,7 +151,9 @@ Forking the repository allows us to have a copy of the original repository to vi
     * Setting up and accessing google sheets
     * validating strings into numbers and checking the number of them
 
-[DelfStack](https://www.delftstack.com/howto/python/python-clear-console/) for code to clear the terminal. 
+* Help with updating individual cells [Youtube](https://www.youtube.com/watch?v=yPQ2Gk33b1U)
+
+* [DelfStack](https://www.delftstack.com/howto/python/python-clear-console/) for code to clear the terminal. 
 
 ### Acknowledgements
 * My Mentor for feedback throughout the project.
