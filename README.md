@@ -112,6 +112,7 @@ I have also giving the link to my Heroku app to friends and family in order for 
 * [Google sheets](https://www.google.co.uk/sheets/about/)
 * [Google Cloud](https://cloud.google.com/)
 * [Heroku](https://signup.heroku.com/login)
+* [Lucidchart](https://www.lucidchart.com/)
 
 ## Deployment
 
