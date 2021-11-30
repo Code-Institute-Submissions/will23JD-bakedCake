@@ -26,6 +26,10 @@ Users can check, update all or update individual stock levels, as well as being 
     * Add new items 
     * Delete items.
 
+## Flow Chart
+
+![View of flow chart](assets/images/lchart.png)
+
 ## Features
 
 ### Login ID
