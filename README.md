@@ -92,14 +92,15 @@ I have manually tested this project by:
 * Giving invalid inputs Eg: passing to many numbers to update, strings for numbers, wrong ID.
 * I have done this testing throughout building my project in my local and Code Institue Heroku terminals.
 
-I have also giving the link to my Heroku app to friends and family in order for them to test it to.
+I have also gave the link to my Heroku app to friends and family in order for them to test it to.
 
 
 ### Fixed Bugs 
-
+* When adding the abillity to add or delete items from the stock sheet, update all function wouldn't work as it was set to 7. To fix this I added coode to count the number of items in the sheet and use that for the number so it was always the correct amount.
+* When add new stock to the worksheet numbers would get added to the wrong stocks, this was caused by a missing space in the for loop.
 
 ### Unfixed Bugs
-
+* If you add or delete an item, the terminal wont put update that change unit you restart the terminal.(To get around this I told the user to restart the program and used the exit() function to stop the terminal running.)
 
 ## Technologies Used
 
