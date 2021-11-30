@@ -256,6 +256,8 @@ def add_items():
     append_n_stock(name, stock)
     print(f"New item: {name} and value: {stock} Added.")
     spacer(35)
+    print("Please restart the program to view changes.")
+    spacer(35)
     exit()
 
 
@@ -289,6 +291,8 @@ def get_del_item():
     print("\nRemoving item....")
     delete_item(remove)
     print("Item deleted.")
+    spacer(35)
+    print("Please restart the program to view changes.")
     spacer(35)
     exit()
 
