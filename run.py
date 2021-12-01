@@ -34,9 +34,7 @@ def start():
 def validate_id(data):
     """
     Checkes to see if the given id is correct.
-    Checkes to see if all values are integers
-    and that they are the correct ones if not
-    raises a ValueError.
+    if not raises a ValueError.
     """
     code = "1"
 
@@ -53,8 +51,7 @@ def validate_id(data):
 
 def update_check():
     """
-    Asks the user if they want to check on stock levels
-    or update them.
+    Asks the user want function they would like to run.
     """
     while True:
         print("To check all stock levels enter: 1")
@@ -71,8 +68,10 @@ def update_check():
 
 def validate_c(data):
     """
-    checks whether the user wants to update stock levels
-    or check them.
+    checks the users input and returns the correct function.
+    If a number other than 1-5 is given raise value error
+    and repeat the question.
+    returns false causing the while loop to continue.
     """
 
     try:
@@ -98,7 +97,8 @@ def validate_c(data):
 
 def get_stock_values():
     """
-    get stock values and headings to create a dictionary
+    get stock values and headings to create a dictionary.
+    allowing the user to see the items and stock levels.
     """
     clear_console()
     stock = SHEET.worksheet("stock").col_values(2)
@@ -140,7 +140,8 @@ def validate_stock(data):
     """
     The try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
-    or if there aren't 7 values.
+    or if there aren't the correct number of values.
+    returns false causing the while loop to continue.
     """
     index = []
     for i in range(len(HEADINGS)):
@@ -217,6 +218,7 @@ def val_ind_stock(data):
 def add_new_stock(data):
     """
     Add's new stock data to the worksheet.
+    used to update stock for both update all and ind.
     """
     print(f"Adding stock new {data}...")
     all_stock = {data[i]: i + 1 for i in range(len(data))}
