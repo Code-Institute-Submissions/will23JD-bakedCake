@@ -109,9 +109,12 @@ def get_stock_values():
     for key, value in stock_table.items():
         print(f"{key} : {value}")
 
-    option = input("\nWould you like to continue(c) or logout(l): ")
-    spacer(35)
-    continue_program(option)
+    while True:
+        option = input("\nWould you like to continue(c) or logout(l): ")
+        spacer(35)
+
+        if continue_program(option):
+            break
 
 
 def update_all():
@@ -178,9 +181,13 @@ def update_ind():
     print("\nAdding new stock...")
     update_stock(ind_c, ind_stock)
     print("New stock added.")
-    option = input("\nWould you like to continue(c) or logout(l): ")
-    spacer(35)
-    continue_program(option)
+
+    while True:
+        option = input("\nWould you like to continue(c) or logout(l): ")
+        spacer(35)
+
+        if continue_program(option):
+            break
 
 
 def val_ind_name(name):
@@ -226,9 +233,12 @@ def add_new_stock(data):
     for stock, name in all_stock.items():
         update_stock(name, stock)
     print("New stock added.")
-    option = input("\nWould you like to continue(c) or logout(l): ")
-    spacer(35)
-    continue_program(option)
+    while True:
+        option = input("\nWould you like to continue(c) or logout(l): ")
+        spacer(35)
+
+        if continue_program(option):
+            break
 
 
 def update_stock(name, data):
@@ -321,6 +331,8 @@ def continue_program(data):
     except ValueError:
         print(f"Invalid choice: {data}")
         print("Please enter c or l(selection is case sensitive).\n")
+        return False
+    return True
 
 
 def clear_console():
