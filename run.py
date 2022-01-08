@@ -250,19 +250,18 @@ def update_stock(name, data):
 
 def add_items():
     """
-    Get new stock new and stock level.
+    Get new stock name and stock level.
     pass them to validation function.
     """
     clear_console()
     print("ADD NEW ITEM")
     spacer(35)
     while True:
-        print("Please enter the name of the item you wish to add:")
+        print("\nPlease enter the name of the item you wish to add:")
         name = input("Enter: ")
         print("\nPlease enter the quantity of the item(in grams)")
         stock = input("Enter: ")
-
-        if val_ind_stock(stock):
+        if val_ind_stock(stock) and check_string(name, stock):
             break
     print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
@@ -315,6 +314,18 @@ def delete_item(row):
     """
     SHEET.sheet1.delete_rows(int(row))
 
+
+def check_string(name, stock):
+    """
+    check if stock is a string
+    """
+    while len(name.strip()) == 0 or len(stock.strip()) == 0:
+        spacer(35)
+        print("Please enter a value for both item and quantity")
+        spacer(35)
+        return False
+
+    return True
 
 def continue_program(data):
     """
