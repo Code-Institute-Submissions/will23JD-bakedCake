@@ -261,7 +261,7 @@ def add_items():
         name = input("Enter: ")
         print("\nPlease enter the quantity of the item(in grams)")
         stock = input("Enter: ")
-        if val_ind_stock(stock) and check_string(name, stock):
+        if val_ind_stock(stock) and check_string(name, stock) and check_item(name):
             break
     print(f"\nAdding new item: {name} and value: {stock}...")
     append_n_stock(name, stock)
@@ -326,6 +326,17 @@ def check_string(name, stock):
         return False
 
     return True
+
+
+def check_item(name):
+    try:
+        int(name)     
+    except ValueError:
+        return True
+    else:
+        print(f"\nValue error {name}, please enter a item not a number")
+        return False
+
 
 def continue_program(data):
     """
